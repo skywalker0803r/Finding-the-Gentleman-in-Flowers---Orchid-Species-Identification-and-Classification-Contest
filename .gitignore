@@ -1,0 +1,13 @@
+# python
+*.pyc
+__pycache__
+
+# dir
+/training
+/data
+/models
+/runs
+/predict_result
+
+# vscode
+.vscode
