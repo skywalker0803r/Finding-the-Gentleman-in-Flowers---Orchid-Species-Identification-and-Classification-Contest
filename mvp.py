@@ -181,7 +181,7 @@ def train(model,train_iter,vaild_iter,optimizer,loss_fn,max_epochs=300,log_inter
 from copy import deepcopy
 device = 'cuda:0'
 model = model.to(device)
-model = torch.nn.DataParallel(model, device_ids=[0, 1, 2 ,3])
+#model = torch.nn.DataParallel(model, device_ids=[0, 1, 2 ,3])
 optimizer = torch.optim.Adam(model.parameters(),lr=1e-3)
 loss_fn = nn.BCEWithLogitsLoss()
 model = train(model,train_loader,val_loader,optimizer,loss_fn,max_epochs=100,log_interval=1,device=device)
@@ -192,7 +192,7 @@ torch.save(model.state_dict(),'senet_randomseed_{random_state}.pt')
 # load model
 model = torch.hub.load('moskomule/senet.pytorch','se_resnet20',num_classes=y_one_hot.shape[1])
 model.conv1 = nn.Conv2d(3, 16, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
-model = torch.nn.DataParallel(model, device_ids=[0, 1, 2 ,3])
+#model = torch.nn.DataParallel(model, device_ids=[0, 1, 2 ,3])
 model.load_state_dict(torch.load('senet_randomseed_{random_state}.pt'))
 model.eval()
 
