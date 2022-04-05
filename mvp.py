@@ -16,6 +16,7 @@ def one_hot(x):
     return b
 
 # load y
+X_train_dir = './training'
 label = pd.read_csv(X_train_dir+'/'+'label.csv')
 y_one_hot = one_hot(label['category'].values.tolist())
 y_one_hot
