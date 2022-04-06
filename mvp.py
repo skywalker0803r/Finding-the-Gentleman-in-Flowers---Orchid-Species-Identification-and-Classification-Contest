@@ -5,6 +5,8 @@ import numpy as np
 import pandas as pd
 from tqdm import tqdm
 import sklearn.preprocessing
+import gc
+gc.collect()
 
 random_state = 42
 
@@ -15,9 +17,14 @@ def one_hot(x):
     b = label_binarizer.transform(a)
     return b
 
-# load y
+# load label
 X_train_dir = './training'
 label = pd.read_csv(X_train_dir+'/'+'label.csv')
+# map_dict
+map_dict = {}
+for l in label.category.unique():
+    map_dict[l] = str(l)
+# one hot format
 y_one_hot = one_hot(label['category'].values.tolist())
 y_one_hot
 
@@ -26,7 +33,7 @@ import requests
 def load_x_from_img_dir(
     X_train_dir = './training',
     label = pd.read_csv(X_train_dir+'/'+'label.csv'),
-    length=64,width=64):
+    length=640,width=480):
     x = []
     for f in tqdm(label['filename'].values.tolist()):
         try:
