@@ -2,12 +2,22 @@
 *.pyc
 __pycache__
 
-# dir
+# build directories
+/build
+/dist
 /training
-/data
-/models
-/runs
-/predict_result
 
-# vscode
+# editor
 .vscode
+.idea
+*.code-workspace
+
+# non-committed code
+local
+legacy
+/runs
+/out
+
+# notebooks
+*.ipynb
+*.ipynb_checkpoints
